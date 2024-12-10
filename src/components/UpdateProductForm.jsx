@@ -59,9 +59,9 @@ class UpdateProductForm extends Component {
         const errors = this.validateForm();
         if (Object.keys(errors).length === 0) {
             const productData = {
-                name: this.state.name.trim(),
-                price: parseFloat(this.state.price.trim()),
-                stock: parseInt(this.state.stock.trim(), 10)
+                name: this.state.name,
+                price: parseFloat(this.state.price),
+                stock: parseInt(this.state.stock, 10)
             };
 
             try {
