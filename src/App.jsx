@@ -3,6 +3,10 @@ import CustomerForm from './components/CustomerForm';
 import CustomerDetails from './components/CustomerDetails';
 import UpdateCustomerForm from './components/UpdateCustomerForm';
 import CustomerList from './components/CustomerList';
+import ProductForm from './components/ProductForm';
+import ProductList from './components/ProductList';
+import ProductDetails from './components/ProductDetails';
+import UpdateProductForm from './components/UpdateProductForm';
 import './App.css';
 
 class App extends Component {
@@ -19,6 +23,9 @@ class App extends Component {
     handleCustomerSelect = (customerId) => {
         this.setState({ selectedCustomerId: customerId });
     };
+    handleProductSelect = (productId) => {
+        this.setState({ selectedProductId: productId });
+    };
 
     handleCustomerDeleted = (customerId) => {
         this.setState(prevState => ({
@@ -27,10 +34,19 @@ class App extends Component {
         }));
     };
 
-
+    handleProductDeleted = (productId) => {
+        this.setState(prevState => ({
+            selectedProductId: null,
+            products: prevState.products.filter(product => product.id !== productId)
+        }));
+    };
 
     updateCustomerList = (customers) => {
         this.setState({ customers });
+    };
+
+    updateProductList = (products) => {
+        this.setState({ products });
     };
 
     addCustomer = (newCustomer) => {
@@ -38,7 +54,11 @@ class App extends Component {
           customers: [...prevState.customers, newCustomer]
       }));
   };
-
+    addProduct = (newProduct) => {
+      this.setState(prevState => ({
+          products: [...prevState.products, newProduct]
+      }));
+  };
 
   updateCustomerDetails = (updatedCustomer) => {
       this.setState(prevState => ({
@@ -48,11 +68,21 @@ class App extends Component {
       }));
   };
 
+    updateProductDetails = (updatedProduct) => {
+        this.setState(prevState => ({
+            products: prevState.products.map(product =>
+                product.id === updatedProduct.id ? updatedProduct : product
+            )
+        }));
+    }
+
 
 
     render() {
         const { selectedCustomerId, customers} = this.state;
+        const { selectedProductId, products } = this.state;
         const selectedCustomer = customers.find(customer => customer.id === selectedCustomerId);
+        const selectedProduct = products.find(product => product.id === selectedProductId);
         return (
             <div className="app-container">
                 <h1>Our Customers</h1>
@@ -76,7 +106,27 @@ class App extends Component {
                         />
                     </>
                 )}
-                
+                <h1>Our Products</h1>
+                <ProductForm onAddProduct={this.addProduct} />
+                <ProductList 
+                    products={this.state.products} 
+                    onProductSelect={this.handleProductSelect} 
+                    updateProductList={this.updateProductList}
+                />
+                {selectedProduct && (
+                    <>
+                        <ProductDetails 
+                            productId={selectedProductId} 
+                            product={selectedProduct}
+                            onProductDeleted={this.handleProductDeleted}
+                        />
+                        <UpdateProductForm 
+                            productId={selectedProductId} 
+                            onUpdateProductDetails={this.updateProductDetails}
+                        
+                        />
+                    </>
+                )}
             </div>
         );
     }
