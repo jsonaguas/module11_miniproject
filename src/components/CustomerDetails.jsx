@@ -19,6 +19,9 @@ class CustomerDetails extends Component {
         if (prevProps.customerId !== this.props.customerId) {
             this.fetchCustomerDetails();
         }
+        if (prevProps.customer !== this.props.customer) {
+            this.setState({ customer: this.props.customer });
+        }
     }
 
     fetchCustomerDetails = () => {

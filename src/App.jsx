@@ -10,7 +10,9 @@ class App extends Component {
         super(props);
         this.state = {
             selectedCustomerId: null,
+            selectedProductId: null,
             customers: [],
+            products: []
         };
     }
 
@@ -49,7 +51,7 @@ class App extends Component {
 
 
     render() {
-        const { selectedCustomerId, customers, products} = this.state;
+        const { selectedCustomerId, customers} = this.state;
         const selectedCustomer = customers.find(customer => customer.id === selectedCustomerId);
         return (
             <div className="app-container">
@@ -64,6 +66,7 @@ class App extends Component {
                     <>
                         <CustomerDetails 
                             customerId={selectedCustomerId} 
+                            customer={selectedCustomer}
                             onCustomerDeleted={this.handleCustomerDeleted}
                         />
                         <UpdateCustomerForm 

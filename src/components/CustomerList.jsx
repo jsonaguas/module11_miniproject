@@ -7,6 +7,12 @@ class CustomerList extends Component {
         this.fetchCustomers();
     }
 
+    componentDidUpdate (prevProps) {
+        if (prevProps.customers !== this.props.customers) {
+            this.fetchCustomers();
+        }
+    }
+
     fetchCustomers = () => {
         axios.get('http://127.0.0.1:5000/customer')
             .then(response => {
