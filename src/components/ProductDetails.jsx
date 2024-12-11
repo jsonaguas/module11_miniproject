@@ -56,7 +56,7 @@ class ProductDetails extends Component {
         }
 
         return (
-            <div>
+            <div className="clist">
                 <h3>Product Details</h3>
                 <p>Name: {product.name}</p>
                 <p>Price: {product.price}</p>

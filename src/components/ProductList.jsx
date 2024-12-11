@@ -35,7 +35,7 @@ class ProductList extends Component {
         }
 
         return (
-            <div>
+            <div className="clist">
                 <h3>Product List</h3>
                 <ul>
                     {products.map(product => (

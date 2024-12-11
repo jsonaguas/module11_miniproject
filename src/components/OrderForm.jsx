@@ -76,7 +76,7 @@ class OrderForm extends Component {
         }
 
         return (
-            <div>
+            <div className="formy">
                 <h3>Customer List</h3>
                 <ul>
                     {customers.map(customer => (

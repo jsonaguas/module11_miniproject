@@ -59,8 +59,8 @@ class CustomerForm extends Component {
         const { name, email, phone, errors } = this.state;
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <h3>Add Customer</h3>
+            <form className="formy" onSubmit={this.handleSubmit}>
+                <h3 className="form_title">Add Customer</h3>
                 <label>
                     Name:
                     <input type="text" name="name" value={name} onChange={this.handleChange} />

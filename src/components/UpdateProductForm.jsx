@@ -81,7 +81,7 @@ class UpdateProductForm extends Component {
         const { name, price, stock, errors, errorMessage } = this.state;
 
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="formy" onSubmit={this.handleSubmit}>
                 <h3>Update Product</h3>
                 {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
                 <label>

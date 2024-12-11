@@ -3,7 +3,7 @@ import {Navbar, Nav} from 'react-bootstrap';
 
 function NaviBar () {
     return (
-        <Navbar expand="lg">
+        <Navbar className="bg-info" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
