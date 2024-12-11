@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import axios from 'axios';
 
 class OrderForm extends Component {
@@ -9,7 +9,7 @@ class OrderForm extends Component {
             products: [],
             customer_id: null,
             product_id: null,
-            order_date: '', // New state variable for order date
+            order_date: '',
             error: null
         };
     }
@@ -57,7 +57,7 @@ class OrderForm extends Component {
             customer_id: this.state.customer_id,
             product_id: this.state.product_id,
             quantity: 1,
-            order_date: this.state.order_date // Use the selected date
+            order_date: this.state.order_date
         };
         try {
             await axios.post('http://127.0.0.1:5000/order', orderData);
@@ -80,18 +80,26 @@ class OrderForm extends Component {
                 <h3>Customer List</h3>
                 <ul>
                     {customers.map(customer => (
-                        <li key={customer.id} onClick={() => this.handleCustomerClick(customer.id)}>
+                        <li
+                            key={customer.id}
+                            onClick={() => this.handleCustomerClick(customer.id)}
+                            className={customer_id === customer.id ? 'selected' : ''}
+                        >
                             {customer.name}
                         </li>
                     ))}
                 </ul>
 
                 {customer_id && (
-                    <div>
+                    <div className="clist">
                         <h3>Product List</h3>
                         <ul>
                             {products.map(product => (
-                                <li key={product.id} onClick={() => this.handleProductClick(product.id)}>
+                                <li
+                                    key={product.id}
+                                    onClick={() => this.handleProductClick(product.id)}
+                                    className={product_id === product.id ? 'selected' : ''}
+                                >
                                     {product.name}
                                 </li>
                             ))}
