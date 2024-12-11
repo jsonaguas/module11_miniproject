@@ -151,7 +151,7 @@ class App extends Component {
                                 />
                             </>
                         } />
-                        <Route path="/" element={<h1>Welcome to Our Store</h1>} />
+                        <Route path="/" element={<h1>Ecommerce Database</h1>} />
                     </Routes>
                 </div>
         );

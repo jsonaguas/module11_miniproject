@@ -1,6 +1,7 @@
 // src/components/ProductForm.jsx
 import { Component } from 'react';
 import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap';
 
 class ProductForm extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class ProductForm extends Component {
             price: '',
             stock: '',
             errors: {},
-            errorMessage: ''
+            errorMessage: '',
+            showSuccessModal: false
         };
     }
 
@@ -20,12 +22,16 @@ class ProductForm extends Component {
     };
 
     validateForm = () => {
-        const { name, price, stock } = this.state;
+        const { name, price} = this.state;
         const errors = {};
         if (!name) errors.name = 'Name is required';
         if (!price) errors.price = 'Price is required';
         return errors;
     };
+
+    handleClose = () => {
+        this.setState({ showSuccessModal: false });        
+  };
 
     handleSubmit = async (event) => {
         event.preventDefault();
@@ -45,7 +51,8 @@ class ProductForm extends Component {
                     price: '',
                     stock: '',
                     errors: {},
-                    errorMessage: ''
+                    errorMessage: '',
+                    showSuccessModal: true
                 });
             } catch (error) {
                 console.error('Error adding product:', error);
@@ -57,10 +64,10 @@ class ProductForm extends Component {
     };
 
     render() {
-        const { name, price, stock, errors, errorMessage } = this.state;
+        const { name, price, stock, errors, errorMessage, showSuccessModal } = this.state;
 
         return (
-            <form onSubmit={this.handleSubmit}>
+            <><form onSubmit={this.handleSubmit}>
                 <h3>Add Product</h3>
                 {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
                 <label>
@@ -81,7 +88,17 @@ class ProductForm extends Component {
                 </label>
                 <br />
                 <button type="submit">Submit</button>
-            </form>
+            </form><Modal show={showSuccessModal} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Success</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Product has been successfully</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal></>
         );
     }
 }
