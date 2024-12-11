@@ -7,6 +7,7 @@ import ProductForm from './components/ProductForm';
 import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
 import UpdateProductForm from './components/UpdateProductForm';
+import OrderForm from './components/OrderForm';
 import './App.css';
 
 class App extends Component {
@@ -16,9 +17,10 @@ class App extends Component {
             selectedCustomerId: null,
             selectedProductId: null,
             customers: [],
-            products: []
+            products: [],
         };
     }
+    
 
     handleCustomerSelect = (customerId) => {
         this.setState({ selectedCustomerId: customerId });
@@ -127,6 +129,9 @@ class App extends Component {
                         />
                     </>
                 )}
+                <OrderForm 
+                onCustomerSelect={this.handleCustomerSelect}
+                onProductSelect={this.handleProductSelect} />
             </div>
         );
     }
