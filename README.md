@@ -21,5 +21,5 @@ such as querying any details and auto-filling the update form.
 For orders, I ultimately had hoped one would click on a specific customer which will remain highlighted and then associate an order that they would like to purchase. You will then ideally submit the order. I unfortunately was unable to have this component fully operational, so
 it exists purely as theory and not practice.
 
-
+Rest API: https://github.com/jsonaguas/module6_miniproject
 
